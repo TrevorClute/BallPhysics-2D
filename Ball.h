@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BALL_H
 #define BALL_H
 
@@ -6,7 +7,9 @@
 #include "helpers.h"
 #include <SDL2/SDL.h>
 #include <iostream>
+
 #define GRAVITY 1500
+
 
 struct VelocityVector
 {
@@ -127,7 +130,7 @@ public:
 
     void createCircle()
     {
-        radius = size / 2;
+        radius = size / 2.0;
         centerX = x + radius;
         centerY = y + radius;
         std::vector<SDL_FPoint> points;

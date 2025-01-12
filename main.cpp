@@ -1,6 +1,5 @@
 #include <SDL2/SDL.h>
 #include "Screen.h"
-#include <cstdlib>
 
 int main()
 {

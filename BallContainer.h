@@ -1,10 +1,12 @@
+#pragma once
 #ifndef BALLCONTAINER_H
 #define BALLCONTAINER_H
+
 #include <vector>
 #include "Ball.h"
-#include "Screen.h"
 #include <iostream>
 #include <cmath>
+
 
 struct Line
 {
@@ -29,9 +31,10 @@ public:
     Ball createRandomBall()
     {
         int size = rand() % 100 + 50;
-        int r = (rand() % 2) * 200;
-        int g = (rand() % 2) * 200;
-        int b = (rand() % 2) * 200;
+        int r = (rand() % 2) * 255;
+        /*int g = (rand() % 2) * 255;*/
+        int g = 255;
+        int b = (rand() % 2) * 255;
         Ball ball(size, 500 - size / 2.0, 0, r, g, b);
         return ball;
     }

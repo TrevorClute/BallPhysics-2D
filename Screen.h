@@ -1,3 +1,5 @@
+#pragma once
+#include <chrono>
 #ifndef SCREEN_H
 #define SCREEN_H
 
@@ -5,6 +7,8 @@
 #include <iostream>
 #include "Ball.h"
 #include "BallContainer.h"
+#include <cstdint>
+
 
 class Screen
 {
@@ -37,9 +41,9 @@ public:
         lastFrame = currentFrame;
         helpers::delta = deltaTime.count();
 
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderDrawLine(renderer, 0, 600, 1000, 600);
         ballContainer.present(renderer);
         SDL_RenderPresent(renderer);
@@ -66,11 +70,10 @@ public:
         }
         if (helpers::keyboard[SDL_SCANCODE_0])
         {
-            auto now = std::chrono::system_clock::now();
-            duration = now - lastReset;
-            if (duration.count() < 1)
-            {
-                return;
+          std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+          duration = now - lastReset;
+          if (duration.count() < 1) {
+            return;
             }
             lastReset = now;
             ballContainer.reset();
@@ -78,7 +81,7 @@ public:
         if (helpers::keyboard[SDL_SCANCODE_SPACE])
         {
             // cooldown
-            auto now = std::chrono::system_clock::now();
+            std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
             duration = now - lastPressedSpace;
             if (duration.count() < 1)
             {
